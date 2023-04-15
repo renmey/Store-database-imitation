@@ -84,10 +84,7 @@ public class Item {
         return owner;
     }
 
-    public String showOwner(){
-        return this.owner.getFullName();
 
-    }
 
     public void setOwner(Person owner) {
         this.owner = owner;
