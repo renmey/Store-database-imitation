@@ -1,0 +1,16 @@
+create table public.item (
+  id integer primary key not null,
+  item_name character varying,
+  price integer,
+  person_id integer,
+  foreign key (person_id) references public.person (id)
+  match simple on update no action on delete set null
+);
+
+create table public.person (
+  id integer primary key not null,
+  full_name character varying(100) not null,
+  phone_number character varying
+);
+create unique index person_phone_number_key on person using btree (phone_number);
+

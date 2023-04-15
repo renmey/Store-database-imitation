@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>New item</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/items}" th:object="${item}">
+  <!-- указываем метод отправки формы (POST) и адрес контроллера, который будет обрабатывать запросы на создание товара -->
+
+  <label for="owner">Выберите владельца:</label>
+  <select th:field="*{owner}" id="owner">
+    <option value="">-- Выберите владельца --</option>
+    <th:block th:each="person : ${people}">
+      <option th:value="${person.getId()}" th:text="${person.getFullName()}"></option>
+    </th:block>
+  </select>
+
+
+  <label for="itemName">Введите название товара:</label>
+  <input type="text" th:field="*{itemName}" id="itemName"/>
+  <div style="color:red" th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}">Title Error</div>
+  <!-- выводим сообщение об ошибке, если пользователь не ввел название товара -->
+
+  <br/>
+
+  <label for="price">Введите цену:</label>
+  <input type="text" th:field="*{price}" id="price"/>
+  <div style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</div>
+  <!-- выводим сообщение об ошибке, если пользователь не ввел цену -->
+
+  <br/>
+
+  <input type="submit" value="Создать!"/>
+</form>
+
+</body>
+</html>

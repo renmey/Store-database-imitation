@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Show</title>
+</head>
+<body>
+<p th:text="${item.getItemName() + ', ' + item.getPrice()}">VALUE</p>
+
+<span th:if="${item.getOwner() != null}" th:text="${'Владелец товара: '+item.getOwner().getFullName()}"></span>
+<span th:unless="${item.getOwner() != null}">нет владельца</span>
+
+
+
+
+<form th:method="GET" th:action="@{/items/{id}/edit(id=${item.getId()})}">
+  <input type="submit" value="Редактировать"/>
+</form>
+
+<form th:method="DELETE" th:action="@{/items/{id}(id=${item.getId()})}">
+  <input type="submit" value="Удалить"/>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Update book</title>
+</head>
+<body>
+
+<form th:method="PATCH" th:action="@{/items/{id}(id=${item.getId()})}" th:object="${item}">
+
+
+
+
+  <label for="owner">Выберите владельца:</label>
+  <select th:field="*{owner}" id="owner">
+    <option value="">-- Выберите владельца --</option>
+    <th:block th:each="person : ${people}">
+      <option th:value="${person.getId()}" th:text="${person.getFullName()}"></option>
+    </th:block>
+  </select>
+
+
+  <label for="itemName">Введите название товара: </label>
+  <input type="text" th:field="*{itemName}" id="itemName"/>
+
+  <br/>
+
+  <label for="price">Введите цену: </label>
+  <input type="text" th:field="*{price}" id="price"/>
+
+  <br/>
+  <input type="submit" value="Редактировать!"/>
+</form>
+
+</body>
+</html>
